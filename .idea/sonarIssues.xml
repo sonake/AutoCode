@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="issues">
+    <option name="index">
+      <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/policy/batch/validate/IpValidate.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/policy/batch/validate/KeywordsValidate.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/policy/profile/impl/PxyProfileKeyringServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/system/impl/UserServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/sonake/AutoCodeConfiguration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/sonake/AutoCodeProperties.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/com/sonake/config/DbConfig.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../FEBS-Cloud/febs-config/src/main/resources/bootstrap.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

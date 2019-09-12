@@ -12,11 +12,34 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "autocode")
+@ConfigurationProperties(prefix = "auto-code")
 public class AutoCodeProperties {
     /**
      * 数据库类型，目前支持【mysql、oracle、sqlserver、postgresql】
      */
     public static String DEFAULT_DATABASETYPE="mysql";
     private String databaseType=DEFAULT_DATABASETYPE;
+
+    /**
+     *
+     */
+    private String mainPath;
+    /**
+     * groupId
+     */
+    private String groupId="com.sonake";
+    /**
+     *  artifactId
+     */
+    private String artifactId="ac";
+    /**
+     * author
+     */
+    private String author="bby";
+    /**
+     * email
+     */
+    private String email="yxzbby@aliyun.com";
+
+
 }
