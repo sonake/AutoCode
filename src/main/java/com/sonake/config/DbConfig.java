@@ -26,25 +26,25 @@ public class DbConfig {
     @Value("${auto.databaseType: mysql}")
     private String database;
     @Autowired
-    private MySQLGeneratorDao mySQLGeneratorDao;
+    private MySQLAutoCodeDao mySQLAutoCodeDao;
     @Autowired
-    private OracleGeneratorDao oracleGeneratorDao;
+    private OracleAutoCodeDao oracleAutoCodeDao;
     @Autowired
-    private SQLServerGeneratorDao sqlServerGeneratorDao;
+    private SQLServerAutoCodeDao sqlServerAutoCodeDao;
     @Autowired
-    private PostgreSQLGeneratorDao postgreSQLGeneratorDao;
+    private PostgreSQLAutoCodeDao postgreSQLAutoCodeDao;
 
     @Bean
     @Primary
-    public GeneratorDao getGeneratorDao() {
+    public AutoCodeDao getGeneratorDao() {
         if ("mysql".equalsIgnoreCase(database)) {
-            return mySQLGeneratorDao;
+            return mySQLAutoCodeDao;
         } else if ("oracle".equalsIgnoreCase(database)) {
-            return oracleGeneratorDao;
+            return oracleAutoCodeDao;
         } else if ("sqlserver".equalsIgnoreCase(database)) {
-            return sqlServerGeneratorDao;
+            return sqlServerAutoCodeDao;
         } else if ("postgresql".equalsIgnoreCase(database)) {
-            return postgreSQLGeneratorDao;
+            return postgreSQLAutoCodeDao;
         } else {
             throw new RRException("不支持当前数据库：" + database);
         }

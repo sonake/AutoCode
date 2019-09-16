@@ -1,6 +1,8 @@
 package com.sonake.dao;
 
 
+import org.apache.ibatis.annotations.Mapper;
+
 /**
  * SQLServer代码生成器
  *
@@ -8,6 +10,7 @@ package com.sonake.dao;
  * @Mapper
  * @since 2018-07-24
  */
-public interface SQLServerGeneratorDao extends GeneratorDao {
+@Mapper
+public interface SQLServerAutoCodeDao extends AutoCodeDao {
 
 }

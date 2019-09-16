@@ -10,11 +10,10 @@ package com.sonake.service;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.sonake.dao.GeneratorDao;
+import com.sonake.dao.AutoCodeDao;
 import com.sonake.utils.GenUtils;
 import com.sonake.utils.PageUtils;
 import com.sonake.utils.Query;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,23 +26,23 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 @Service
-public class SysGeneratorService {
+public class AutoCodeService {
     @Autowired
-    private GeneratorDao generatorDao;
+    private AutoCodeDao autoCodeDao;
 
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-        List<Map<String, Object>> list = generatorDao.queryList(query);
+        List<Map<String, Object>> list = autoCodeDao.queryList(query);
 
         return new PageUtils(list, (int) page.getTotal(), query.getLimit(), query.getPage());
     }
 
     public Map<String, String> queryTable(String tableName) {
-        return generatorDao.queryTable(tableName);
+        return autoCodeDao.queryTable(tableName);
     }
 
     public List<Map<String, String>> queryColumns(String tableName) {
-        return generatorDao.queryColumns(tableName);
+        return autoCodeDao.queryColumns(tableName);
     }
 
     public boolean generatorCode(String[] tableNames, Map<String, String> params) {

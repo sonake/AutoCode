@@ -8,6 +8,21 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-api/src/main/java/cn/nis/ntc/api/controller/system/UserController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-entity/src/main/java/cn/nis/ntc/bean/entity/system/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/policy/batch/ImportUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/IdeaSpace/bifang/ntc-service/src/main/java/cn/nis/ntc/service/policy/batch/validate/IpValidate.java">
           <value>
             <set />
@@ -49,6 +64,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../FEBS-Cloud/febs-config/src/main/resources/bootstrap.yml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../sonake/business/admin-api/src/main/java/com/hc/admin/XZ.java">
           <value>
             <set />
           </value>

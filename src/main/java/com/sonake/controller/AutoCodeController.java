@@ -8,7 +8,7 @@
 
 package com.sonake.controller;
 
-import com.sonake.service.SysGeneratorService;
+import com.sonake.service.AutoCodeService;
 import com.sonake.utils.PageUtils;
 import com.sonake.utils.Query;
 import com.sonake.utils.R;
@@ -33,19 +33,25 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 @Controller
-@RequestMapping("/sys/generator")
-public class SysGeneratorController {
-    private static Logger logger = LoggerFactory.getLogger(SysGeneratorController.class);
+@RequestMapping("/autoCode")
+public class AutoCodeController {
+    private static Logger logger = LoggerFactory.getLogger(AutoCodeController.class);
     @Autowired
-    private SysGeneratorService sysGeneratorService;
+    private AutoCodeService autoCodeService;
 
+
+
+    @RequestMapping("/index")
+    public String list(){
+        return "/views/index";
+    }
     /**
      * 列表
      */
     @ResponseBody
     @RequestMapping("/list")
     public R list(@RequestParam Map<String, Object> params) {
-        PageUtils pageUtil = sysGeneratorService.queryList(new Query(params));
+        PageUtils pageUtil = autoCodeService.queryList(new Query(params));
 
         return R.ok().put("page" , pageUtil);
     }
@@ -63,7 +69,7 @@ public class SysGeneratorController {
         params.put("codeUrl" , codeUrl);
         params.put("xmlUrl" , xmlUrl);
         params.put("vueUrl" , vueUrl);
-        boolean isExist = sysGeneratorService.generatorCode(tables.split(","), params);
+        boolean isExist = autoCodeService.generatorCode(tables.split(","), params);
 
         response.reset();
         if (isExist) {

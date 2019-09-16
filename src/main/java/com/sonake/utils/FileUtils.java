@@ -415,8 +415,9 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
      */
     public static String getContentType(String returnFileName) {
         String contentType = "application/octet-stream";
-        if (returnFileName.lastIndexOf(".") < 0)
+        if (returnFileName.lastIndexOf(".") < 0) {
             return contentType;
+        }
         returnFileName = returnFileName.toLowerCase();
         returnFileName = returnFileName.substring(returnFileName.lastIndexOf(".") + 1);
         if (returnFileName.equals("html") || returnFileName.equals("htm") || returnFileName.equals("shtml")) {
@@ -534,26 +535,6 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         return contentType;
     }
 
-    /**
-     * 修正路径，将 \\ 或 / 等替换为 File.separator
-     *
-     * @param path 待修正的路径
-     * @return 修正后的路径
-     */
-    public static String path(String path) {
-        String p = StringUtils.replace(path, "\\" , "/");
-        p = StringUtils.join(StringUtils.split(p, "/"), "/");
-        if (!StringUtils.startsWithAny(p, "/") && StringUtils.startsWithAny(path, "\\" , "/")) {
-            p += "/";
-        }
-        if (!StringUtils.endsWithAny(p, "/") && StringUtils.endsWithAny(path, "\\" , "/")) {
-            p = p + "/";
-        }
-        if (path != null && path.startsWith("/")) {
-            p = "/" + p; // linux下路径
-        }
-        return p;
-    }
 
     /**
      * 获目录下的文件列表
@@ -573,18 +554,6 @@ public class FileUtils extends org.apache.commons.io.FileUtils {
         return files;
     }
 
-    /**
-     * 获取文件扩展名(返回小写)
-     *
-     * @param fileName 文件名
-     * @return 例如：test.jpg  返回：  jpg
-     */
-    public static String getFileExtension(String fileName) {
-        if ((fileName == null) || (fileName.lastIndexOf(".") == -1) || (fileName.lastIndexOf(".") == fileName.length() - 1)) {
-            return null;
-        }
-        return StringUtils.lowerCase(fileName.substring(fileName.lastIndexOf(".") + 1));
-    }
 
     /**
      * 获取文件名，不包含扩展名

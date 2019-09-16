@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.sonake.AutoCodeConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.sonake.AutoCodeConfiguration
