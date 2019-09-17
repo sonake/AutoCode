@@ -39,12 +39,6 @@ public class AutoCodeController {
     @Autowired
     private AutoCodeService autoCodeService;
 
-
-
-    @RequestMapping("/index")
-    public String list(){
-        return "/views/index";
-    }
     /**
      * 列表
      */
@@ -73,10 +67,10 @@ public class AutoCodeController {
 
         response.reset();
         if (isExist) {
-            IOUtils.write("200" , response.getOutputStream());
+            IOUtils.write("200" , response.getOutputStream(),"UTF-8");
             logger.info("代码生成完毕");
         } else {
-            IOUtils.write("500" , response.getOutputStream());
+            IOUtils.write("500" , response.getOutputStream(),"UTF-8");
             logger.error("代码生成失败，请检查配置后重新操作！");
         }
     }

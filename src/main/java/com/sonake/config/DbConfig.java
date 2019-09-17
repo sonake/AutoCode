@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 
 /**
@@ -22,8 +23,9 @@ import org.springframework.context.annotation.Primary;
  * @author Mark sunlightcs@gmail.com
  */
 @Configuration
+@Lazy
 public class DbConfig {
-    @Value("${auto.databaseType: mysql}")
+    @Value("${auto-code.database-type: mysql}")
     private String database;
     @Autowired
     private MySQLAutoCodeDao mySQLAutoCodeDao;

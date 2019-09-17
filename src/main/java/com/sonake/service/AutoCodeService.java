@@ -8,12 +8,14 @@
 
 package com.sonake.service;
 
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.sonake.dao.AutoCodeDao;
 import com.sonake.utils.GenUtils;
 import com.sonake.utils.PageUtils;
 import com.sonake.utils.Query;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +28,14 @@ import java.util.Map;
  * @author Mark sunlightcs@gmail.com
  */
 @Service
+@Slf4j
 public class AutoCodeService {
     @Autowired
     private AutoCodeDao autoCodeDao;
 
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
+        log.info(JSON.toJSONString(query));
         List<Map<String, Object>> list = autoCodeDao.queryList(query);
 
         return new PageUtils(list, (int) page.getTotal(), query.getLimit(), query.getPage());

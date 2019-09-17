@@ -34,10 +34,9 @@ public class GenUtils {
         templates.add("template/Service.java.vm");
         templates.add("template/ServiceImpl.java.vm");
         templates.add("template/Controller.java.vm");
-        //templates.add("template/menu.sql.vm");
-
-        //templates.add("template/index.vue.vm");
-        //templates.add("template/add-or-update.vue.vm");
+        templates.add("template/menu.sql.vm");
+        templates.add("template/index.vue.vm");
+        templates.add("template/add-or-update.vue.vm");
 
         return templates;
     }
