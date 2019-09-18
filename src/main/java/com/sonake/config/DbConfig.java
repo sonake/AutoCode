@@ -24,7 +24,6 @@ import org.springframework.context.annotation.Primary;
  * @version: 1.0
  */
 @Configuration
-@Lazy
 public class DbConfig {
     @Value("${auto-code.database-type: mysql}")
     private String database;

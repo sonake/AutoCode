@@ -1,6 +1,7 @@
 package com.sonake;
 
 
+import com.sonake.utils.DataBaseTypeEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -17,8 +18,7 @@ public class AutoCodeProperties {
     /**
      * 数据库类型，目前支持【mysql、oracle、sqlserver、postgresql】
      */
-    public static String DEFAULT_DATABASETYPE="mysql";
-    private String databaseType=DEFAULT_DATABASETYPE;
+    private DataBaseTypeEnum databaseType= DataBaseTypeEnum.MYSQL;
 
     /**
      *
