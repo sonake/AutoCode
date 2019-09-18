@@ -1,7 +1,7 @@
 # AutoCode
 代码生成starter启动器,以人人的代码生产为基础进行了改造
 
-# PS:目前daimashengc仅支持mysql、oracle、sqlserver、postgresql四种数据库, 项目启动需要配置数据库连接
+# PS:目前代码生成仅支持mysql、oracle、sqlserver、postgresql四种数据库, 项目启动需要配置数据库连接
 # 获取帮助
   GitHub地址：https://github.com/sonake/AutoCode
   如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
