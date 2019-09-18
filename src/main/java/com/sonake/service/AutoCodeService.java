@@ -39,9 +39,7 @@ public class AutoCodeService {
 
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-        //log.info(JSON.toJSONString(query));
         List<Map<String, Object>> list = autoCodeDao.queryList(query);
-        log.info(JSON.toJSONString(autoCodeProperties));
         return new PageUtils(list, (int) page.getTotal(), query.getLimit(), query.getPage());
     }
 

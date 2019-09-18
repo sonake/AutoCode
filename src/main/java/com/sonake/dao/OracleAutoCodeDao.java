@@ -8,10 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Oracle代码生成器
- *
- * @author Mark sunlightcs@gmail.com
- * @since 2018-07-24
+ * @author ：xzyuan
+ * @date ：Created in 2019/9/18 9:43
+ * @description：数据库接口
+ * @version: 1.0
  */
 public interface OracleAutoCodeDao extends AutoCodeDao {
 

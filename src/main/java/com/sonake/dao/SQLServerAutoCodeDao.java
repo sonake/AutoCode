@@ -1,18 +1,15 @@
 package com.sonake.dao;
 
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * SQLServer代码生成器
- *
- * @author Mark sunlightcs@gmail.com
- * @Mapper
- * @since 2018-07-24
+ * @author ：xzyuan
+ * @date ：Created in 2019/9/18 9:43
+ * @description：数据库接口
+ * @version: 1.0
  */
 public interface SQLServerAutoCodeDao extends AutoCodeDao {
     @Select("<script>\n" +

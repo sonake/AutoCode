@@ -28,9 +28,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 代码生成器
- *
- * @author Mark sunlightcs@gmail.com
+ * @author ：xzyuan
+ * @date ：Created in 2019/9/18 9:43
+ * @description：代码生成接口
+ * @version: 1.0
  */
 @Controller
 @RequestMapping("/autoCode")

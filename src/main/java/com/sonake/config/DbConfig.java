@@ -18,9 +18,10 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Primary;
 
 /**
- * 数据库配置
- *
- * @author Mark sunlightcs@gmail.com
+ * @author ：xzyuan
+ * @date ：Created in 2019/9/18 9:43
+ * @description：数据库配置
+ * @version: 1.0
  */
 @Configuration
 @Lazy

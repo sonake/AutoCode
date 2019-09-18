@@ -3,14 +3,12 @@ package com.sonake.utils;
 import com.alibaba.fastjson.JSON;
 import com.sonake.AutoCodeProperties;
 import com.sonake.config.ConstantFactory;
-import com.sonake.config.SpringContextHolder;
 import com.sonake.entity.ColumnEntity;
 import com.sonake.entity.TableEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.apache.velocity.Template;
@@ -40,16 +38,16 @@ public class AutoCodeUtils {
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
         if(ToolUtil.isEmpty(autoCodeProperties.getVmUrl())){
-            templates.add("template/Entity.java.vm");
-            templates.add("template/Dto.java.vm");
-            templates.add("template/Dao.java.vm");
-            templates.add("template/Dao.xml.vm");
-            templates.add("template/Service.java.vm");
-            templates.add("template/ServiceImpl.java.vm");
-            templates.add("template/Controller.java.vm");
-            templates.add("template/menu.sql.vm");
-            templates.add("template/index.vue.vm");
-            templates.add("template/add-or-update.vue.vm");
+            templates.add("vmTemplate/Entity.java.vm");
+            templates.add("vmTemplate/Dto.java.vm");
+            templates.add("vmTemplate/Dao.java.vm");
+            templates.add("vmTemplate/Dao.xml.vm");
+            templates.add("vmTemplate/Service.java.vm");
+            templates.add("vmTemplate/ServiceImpl.java.vm");
+            templates.add("vmTemplate/Controller.java.vm");
+            templates.add("vmTemplate/menu.sql.vm");
+            templates.add("vmTemplate/index.vue.vm");
+            templates.add("vmTemplate/add-or-update.vue.vm");
         }else {
             Resource resource=new ClassPathResource(autoCodeProperties.getVmUrl());
             File file= null;
@@ -215,7 +213,7 @@ public class AutoCodeUtils {
 //    /**
 //     * 获取文件名
 //     */
-//    public static String getFileName(String template, String className, String packageName, String moduleName,Map<String,String> params) {
+//    public static String getFileName(String vmTemplate, String className, String packageName, String moduleName,Map<String,String> params) {
 //        String codeUrl = params.get("codeUrl").replace("/",File.separator).replace("\\",File.separator);
 //        String xmlUrl = params.get("xmlUrl").replace("/",File.separator).replace("\\",File.separator);
 //        String vueUrl = params.get("vueUrl").replace("/",File.separator).replace("\\",File.separator);
@@ -224,42 +222,42 @@ public class AutoCodeUtils {
 //            packagePath +=packageName.replace(".", File.separator) + File.separator + moduleName + File.separator;
 //        }
 //
-//        if (template.contains("Entity.java.vm" )) {
+//        if (vmTemplate.contains("Entity.java.vm" )) {
 //            return packagePath + "entity" + File.separator + className + "Entity.java";
 //        }
-//        if(template.contains("Dto.java.vm")){
+//        if(vmTemplate.contains("Dto.java.vm")){
 //            return packagePath + "dto" + File.separator + className + "Dto.java";
 //        }
 //
-//        if (template.contains("dao.java.vm" )) {
+//        if (vmTemplate.contains("dao.java.vm" )) {
 //            return packagePath + "dao" + File.separator + className + "dao.java";
 //        }
 //
-//        if (template.contains("Service.java.vm" )) {
+//        if (vmTemplate.contains("Service.java.vm" )) {
 //            return packagePath + "service" + File.separator + className + "Service.java";
 //        }
 //
-//        if (template.contains("ServiceImpl.java.vm" )) {
+//        if (vmTemplate.contains("ServiceImpl.java.vm" )) {
 //            return packagePath + "service" + File.separator + "impl" + File.separator + className + "ServiceImpl.java";
 //        }
 //
-//        if (template.contains("Controller.java.vm" )) {
+//        if (vmTemplate.contains("Controller.java.vm" )) {
 //            return packagePath + "controller" + File.separator + className + "Controller.java";
 //        }
 //
-//        if (template.contains("dao.xml.vm" )) {
+//        if (vmTemplate.contains("dao.xml.vm" )) {
 //            return xmlUrl+File.separator+"src"+File.separator+"main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator + className + "dao.xml";
 //        }
 //
-//        if (template.contains("menu.sql.vm" )) {
+//        if (vmTemplate.contains("menu.sql.vm" )) {
 //            return xmlUrl+File.separator+"src"+File.separator+"main" + File.separator + "resources" + File.separator + "mapper" + File.separator + moduleName + File.separator+className.toLowerCase() + "_menu.sql";
 //        }
 //
-//        if (template.contains("index.vue.vm" )) {
+//        if (vmTemplate.contains("index.vue.vm" )) {
 //            return vueUrl + File.separator + className.toLowerCase() + ".vue";
 //        }
 //
-//        if (template.contains("add-or-update.vue.vm" )) {
+//        if (vmTemplate.contains("add-or-update.vue.vm" )) {
 //            return vueUrl +File.separator+ className.toLowerCase() + "-add-or-update.vue";
 //        }
 //
