@@ -1,6 +1,9 @@
 # AutoCode
 代码生成starter启动器,以人人的代码生产为基础进行了改造
 
+# 界面地址：
+https://github.com/sonake/auto-code-ui
+
 # PS:目前代码生成仅支持mysql、oracle、sqlserver、postgresql四种数据库, 项目启动需要配置数据库连接
 # 获取帮助
   GitHub地址：https://github.com/sonake/AutoCode
