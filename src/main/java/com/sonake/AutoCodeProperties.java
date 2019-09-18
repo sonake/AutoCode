@@ -40,6 +40,15 @@ public class AutoCodeProperties {
      * email
      */
     private String email="yxzbby@aliyun.com";
+    /**
+     * 表前缀
+     */
+    private String tablePrefix;
+    /**
+     * 模板路径
+     */
+    private String vmUrl;
+
 
 
 }

@@ -11,8 +11,9 @@ package com.sonake.service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.sonake.AutoCodeProperties;
 import com.sonake.dao.AutoCodeDao;
-import com.sonake.utils.GenUtils;
+import com.sonake.utils.AutoCodeUtils;
 import com.sonake.utils.PageUtils;
 import com.sonake.utils.Query;
 import lombok.extern.slf4j.Slf4j;
@@ -33,11 +34,14 @@ public class AutoCodeService {
     @Autowired
     private AutoCodeDao autoCodeDao;
 
+    @Autowired
+    private AutoCodeProperties autoCodeProperties;
+
     public PageUtils queryList(Query query) {
         Page<?> page = PageHelper.startPage(query.getPage(), query.getLimit());
-        log.info(JSON.toJSONString(query));
+        //log.info(JSON.toJSONString(query));
         List<Map<String, Object>> list = autoCodeDao.queryList(query);
-
+        log.info(JSON.toJSONString(autoCodeProperties));
         return new PageUtils(list, (int) page.getTotal(), query.getLimit(), query.getPage());
     }
 
@@ -57,7 +61,7 @@ public class AutoCodeService {
             //查询列信息
             List<Map<String, String>> columns = queryColumns(tableName);
             //生成代码
-            if (GenUtils.generatorCode(table, columns, params)) {
+            if (AutoCodeUtils.generatorCode(table, columns, params)) {
                 size++;
             }
             ;

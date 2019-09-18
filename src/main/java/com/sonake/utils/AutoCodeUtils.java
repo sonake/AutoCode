@@ -1,7 +1,12 @@
 package com.sonake.utils;
 
+import com.alibaba.fastjson.JSON;
+import com.sonake.AutoCodeProperties;
+import com.sonake.config.ConstantFactory;
+import com.sonake.config.SpringContextHolder;
 import com.sonake.entity.ColumnEntity;
 import com.sonake.entity.TableEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
@@ -11,32 +16,59 @@ import org.apache.commons.lang.WordUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.util.*;
 
 /**
- * 代码生成器   工具类
+ * 代码生成工具类
  *
- * @author chenshun
- * @email sunlightcs@gmail.com
- * @date 2016年12月19日 下午11:40:24
+ * @author xzyuan
+ * @email yxzbby@aliyun.com
+ * @date Created in 2019/9/18 9:43
  */
-public class GenUtils {
+@Slf4j
+public class AutoCodeUtils {
+
+    //获取配置实例
+    private static AutoCodeProperties autoCodeProperties=ConstantFactory.getAutoCodeProperties();
 
     public static List<String> getTemplates() {
         List<String> templates = new ArrayList<String>();
-        templates.add("template/Entity.java.vm");
-        templates.add("template/Dto.java.vm");
-        templates.add("template/Dao.java.vm");
-        templates.add("template/Dao.xml.vm");
-        templates.add("template/Service.java.vm");
-        templates.add("template/ServiceImpl.java.vm");
-        templates.add("template/Controller.java.vm");
-        templates.add("template/menu.sql.vm");
-        templates.add("template/index.vue.vm");
-        templates.add("template/add-or-update.vue.vm");
+        if(ToolUtil.isEmpty(autoCodeProperties.getVmUrl())){
+            templates.add("template/Entity.java.vm");
+            templates.add("template/Dto.java.vm");
+            templates.add("template/Dao.java.vm");
+            templates.add("template/Dao.xml.vm");
+            templates.add("template/Service.java.vm");
+            templates.add("template/ServiceImpl.java.vm");
+            templates.add("template/Controller.java.vm");
+            templates.add("template/menu.sql.vm");
+            templates.add("template/index.vue.vm");
+            templates.add("template/add-or-update.vue.vm");
+        }else {
+            Resource resource=new ClassPathResource(autoCodeProperties.getVmUrl());
+            File file= null;
+            try {
+                file = resource.getFile();
+                File[] files=file.listFiles();
+                for(File f:files) {
+                    int mark= f.getAbsolutePath().lastIndexOf(File.separator);
+                    String path=autoCodeProperties.getVmUrl()+f.getAbsolutePath().substring(mark);
+                    templates.add(path);
+                    log.info(path);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+
+        }
+
 
         return templates;
     }
@@ -46,6 +78,8 @@ public class GenUtils {
      */
     public static boolean generatorCode(Map<String, String> table,
                                         List<Map<String, String>> columns, Map<String, String> params) {
+        log.info("获取配置对象");
+        log.info(JSON.toJSONString(ConstantFactory.getAutoCodeProperties()));
         //配置信息
         Configuration config = getConfig();
         boolean hasBigDecimal = false;
@@ -54,7 +88,7 @@ public class GenUtils {
         tableEntity.setTableName(table.get("tableName"));
         tableEntity.setComments(table.get("tableComment"));
         //表名转换成Java类名
-        String className = tableToJava(tableEntity.getTableName(), config.getString("tablePrefix"));
+        String className = tableToJava(tableEntity.getTableName(), autoCodeProperties.getTablePrefix());
         tableEntity.setClassName(className);
         tableEntity.setClassname(StringUtils.uncapitalize(className));
 
@@ -96,8 +130,8 @@ public class GenUtils {
         Properties prop = new Properties();
         prop.put("file.resource.loader.class" , "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
         Velocity.init(prop);
-        String mainPath = config.getString("mainPath");
-        mainPath = StringUtils.isBlank(mainPath) ? "io.renren" : mainPath;
+        //String mainPath = config.getString("mainPath");
+        //mainPath = StringUtils.isBlank(mainPath) ? "com.sonake" : mainPath;
         //封装模板数据
         Map<String, Object> map = new HashMap<>();
         map.put("tableName" , tableEntity.getTableName());
@@ -108,11 +142,11 @@ public class GenUtils {
         map.put("pathName" , tableEntity.getClassname().toLowerCase());
         map.put("columns" , tableEntity.getColumns());
         map.put("hasBigDecimal" , hasBigDecimal);
-        map.put("mainPath" , mainPath);
-        map.put("package" , config.getString("package"));
-        map.put("moduleName" , config.getString("moduleName"));
-        map.put("author" , config.getString("author"));
-        map.put("email" , config.getString("email"));
+        //map.put("mainPath" , mainPath);
+        map.put("package" , autoCodeProperties.getGroupId());
+        map.put("moduleName" , autoCodeProperties.getArtifactId());
+        map.put("author" , autoCodeProperties.getAuthor());
+        map.put("email" , autoCodeProperties.getEmail());
         map.put("datetime" , DateUtils.format(new Date(), DateUtils.DATE_TIME_PATTERN));
         VelocityContext context = new VelocityContext(map);
 
@@ -137,10 +171,10 @@ public class GenUtils {
                 //IOUtils.write(sw.toString(), zip, "UTF-8" );
                 //IOUtils.closeQuietly(sw);
                 //zip.closeEntry();
+                size++;
             } catch (Exception e) {
                 throw new RRException("渲染模板失败，表名：" + tableEntity.getTableName(), e);
             }
-            size++;
         }
         if (templates.size() == size) {
             return true;
@@ -270,19 +304,19 @@ public class GenUtils {
         }
 
         if (template.contains("Dao.xml.vm")) {
-            return codeUrl + File.separator + className + "dao.xml";
+            return xmlUrl + File.separator + className + "dao.xml";
         }
 
         if (template.contains("menu.sql.vm")) {
-            return codeUrl + File.separator + className.toLowerCase() + "_menu.sql";
+            return xmlUrl + File.separator + className.toLowerCase() + "_menu.sql";
         }
 
         if (template.contains("index.vue.vm")) {
-            return codeUrl + File.separator + className.toLowerCase() + ".vue";
+            return vueUrl + File.separator + className.toLowerCase() + ".vue";
         }
 
         if (template.contains("add-or-update.vue.vm")) {
-            return codeUrl + File.separator + className.toLowerCase() + "-add-or-update.vue";
+            return vueUrl + File.separator + className.toLowerCase() + "-add-or-update.vue";
         }
 
 
