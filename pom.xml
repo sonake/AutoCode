@@ -158,11 +158,7 @@
             <artifactId>velocity</artifactId>
             <version>1.7</version>
         </dependency>
-
         <!--代码生成结束-->
-
-
-
         <!-- MySQL -->
         <dependency>
             <groupId>mysql</groupId>
