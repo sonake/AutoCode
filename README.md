@@ -10,7 +10,7 @@ https://github.com/sonake/auto-code-ui
   如需关注项目最新动态，请Watch、Star项目，同时也是对项目最好的支持
   QQ群：234786908(欢迎大家一起来交流划水姿势)
 # 食用指南
-# 第一步:请添加以下依赖 com.sonake autocode-spring-boot-starter 1.0.0 , com.sonake auto-code-ui 1.0.0
+# 第一步:请添加以下依赖 com.github.sonake autocode-spring-boot-starter 1.0.0 , com.github.sonake auto-code-ui 1.0.0
 # 第二步，在配置文件添加自定义配置
 # 代码生成配置
 auto-code:
